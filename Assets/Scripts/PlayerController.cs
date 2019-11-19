@@ -15,10 +15,10 @@ public class PlayerController : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
-    public float edgeLeft = -11.63f;
-    public float edgeRight = 11.63f;
-    public float edgeUp = 6.13f;
-    public float edgeDown = -6.13f;
+    float edgeLeft = -11.63f;
+    float edgeRight = 11.63f;
+    float edgeUp = 6.13f;
+    float edgeDown = -6.13f;
 
     [Header ("Jump Settings")]
     public float jumpVelocity = 2;
