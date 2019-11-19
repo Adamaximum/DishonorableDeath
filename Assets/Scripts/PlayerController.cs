@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
+    public float edgeLeft = -11.63f;
+    public float edgeRight = 11.63f;
+    public float edgeUp = 6.13f;
+    public float edgeDown = -6.13f;
+
     [Header ("Jump Settings")]
     public float jumpVelocity = 2;
     public bool jumpCheck;
@@ -75,11 +80,17 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            horizontalInput = -playerSpeed;
+            if (transform.position.x > edgeLeft)
+            {
+                horizontalInput = -playerSpeed;
+            }
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            horizontalInput = playerSpeed;
+            if (transform.position.x < edgeRight)
+            {
+                horizontalInput = playerSpeed;
+            }
         }
         else
         {
@@ -90,11 +101,17 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
-                verticalInput = -playerSpeed;
+                if (transform.position.y > edgeDown)
+                {
+                    verticalInput = -playerSpeed;
+                }
             }
             else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
-                verticalInput = playerSpeed;
+                if (transform.position.y < edgeUp)
+                {
+                    verticalInput = playerSpeed;
+                }
             }
             else
             {
