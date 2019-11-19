@@ -5,8 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Spikes
-  - Bullet
+  - HeavenDeath
+  - HellDeath
+  - Angel
+  - Demon
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -41,15 +42,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         MovementInput();
 
         if(playerState == 0)
         {
             playerSR.color = alive;
+            GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else if (playerState == 1)
         {
             playerSR.color = heaven;
+            GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else if (playerState == 2)
         {
@@ -129,7 +137,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpCheck = true;
         }
-        if (collision.gameObject.tag == "Bullet" && playerState == 0)
+        if (collision.gameObject.tag == "HeavenDeath" && playerState == 0)
         {
             playerState = 1;
         }
@@ -145,7 +153,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) // Trigger Enter
     {
-        if(collision.gameObject.tag == "Spikes" && playerState == 0)
+        if (collision.gameObject.tag == "HeavenDeath" && playerState == 0)
+        {
+            playerState = 1;
+        }
+        if (collision.gameObject.tag == "HellDeath" && playerState == 0)
         {
             playerState = 2;
             playerRB.velocity = new Vector2(0f, 0f);
@@ -154,6 +166,15 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.name == "Resurrector")
         {
             playerState = 0;
+        }
+
+        if (collision.gameObject.tag == "Angel" && playerState == 1)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else if (collision.gameObject.tag == "Demon" && playerState == 2)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
