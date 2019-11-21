@@ -84,12 +84,20 @@ public class PlayerController : MonoBehaviour
             {
                 horizontalInput = -playerSpeed;
             }
+            else
+            {
+                horizontalInput = 0;
+            }
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             if (transform.position.x < edgeRight)
             {
                 horizontalInput = playerSpeed;
+            }
+            else
+            {
+                horizontalInput = 0;
             }
         }
         else
@@ -105,12 +113,20 @@ public class PlayerController : MonoBehaviour
                 {
                     verticalInput = -playerSpeed;
                 }
+                else
+                {
+                    verticalInput = 0;
+                }
             }
             else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 if (transform.position.y < edgeUp)
                 {
                     verticalInput = playerSpeed;
+                }
+                else
+                {
+                    verticalInput = 0;
                 }
             }
             else
