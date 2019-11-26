@@ -9,6 +9,8 @@ TagManager:
   - HellDeath
   - Angel
   - Demon
+  - Bullet
+  - Hazard
   layers:
   - Default
   - TransparentFX
