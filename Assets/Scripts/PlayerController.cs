@@ -201,7 +201,11 @@ public class PlayerController : MonoBehaviour
             playerState = 0;
         }
 
-        if (collision.gameObject.tag == "Angel" && playerState == 1)
+        if (collision.gameObject.tag == "Hazard" && playerState == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else if (collision.gameObject.tag == "Angel" && playerState == 1)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
