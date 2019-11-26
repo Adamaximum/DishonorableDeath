@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
+    float edgeLeft = -11.63f;
+    float edgeRight = 11.63f;
+    float edgeUp = 6.13f;
+    float edgeDown = -6.13f;
+
     [Header ("Jump Settings")]
     public float jumpVelocity = 2;
     public bool jumpCheck;
@@ -75,11 +80,25 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            horizontalInput = -playerSpeed;
+            if (transform.position.x > edgeLeft)
+            {
+                horizontalInput = -playerSpeed;
+            }
+            else
+            {
+                horizontalInput = 0;
+            }
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            horizontalInput = playerSpeed;
+            if (transform.position.x < edgeRight)
+            {
+                horizontalInput = playerSpeed;
+            }
+            else
+            {
+                horizontalInput = 0;
+            }
         }
         else
         {
@@ -90,11 +109,25 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
-                verticalInput = -playerSpeed;
+                if (transform.position.y > edgeDown)
+                {
+                    verticalInput = -playerSpeed;
+                }
+                else
+                {
+                    verticalInput = 0;
+                }
             }
             else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
-                verticalInput = playerSpeed;
+                if (transform.position.y < edgeUp)
+                {
+                    verticalInput = playerSpeed;
+                }
+                else
+                {
+                    verticalInput = 0;
+                }
             }
             else
             {
@@ -168,7 +201,11 @@ public class PlayerController : MonoBehaviour
             playerState = 0;
         }
 
-        if (collision.gameObject.tag == "Angel" && playerState == 1)
+        if (collision.gameObject.tag == "Hazard" && playerState == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else if (collision.gameObject.tag == "Angel" && playerState == 1)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

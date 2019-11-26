@@ -20,18 +20,7 @@ public class GoalControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (sceneName == "level0")
-            {
-                SceneManager.LoadScene("level0");
-            }
-            if (sceneName == "level1")
-            {
-                SceneManager.LoadScene("level1");
-            }
-            if (sceneName == "level2")
-            {
-                SceneManager.LoadScene("level2");
-            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -39,18 +28,7 @@ public class GoalControl : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            if (sceneName == "level0")
-            {
-                SceneManager.LoadScene("level1");
-            }
-            if (sceneName == "level1")
-            {
-                SceneManager.LoadScene("level2");
-            }
-            if (sceneName == "level2")
-            {
-                SceneManager.LoadScene("level0");
-            }
+            SceneManager.LoadScene(current.buildIndex + 1);
         }
     }
 }
