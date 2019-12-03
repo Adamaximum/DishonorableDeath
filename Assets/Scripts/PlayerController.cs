@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
+    Vector3 velo;
     float edgeLeft = -11.63f;
     float edgeRight = 11.63f;
     float edgeUp = 6.13f;
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-
+        
         MovementInput();
 
         if(playerState == 0)
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
     void MovementInput()
     {
+
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             if (transform.position.x > edgeLeft)
@@ -146,6 +148,8 @@ public class PlayerController : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCheck == true)
             {
                 playerRB.velocity = Vector2.up * jumpVelocity;
+                //playerRB.velocity = Vector2.up * jumpVelocity *Time.deltaTime;
+                //playerRB.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
             }
         }
         else if (playerState == 1) // Jumping is Infinite
@@ -162,6 +166,13 @@ public class PlayerController : MonoBehaviour
                 playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+ 
+        //playerRB.MovePosition(transform.position + velo);
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision) // Collision Enter

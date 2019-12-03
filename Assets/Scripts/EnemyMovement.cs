@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float horizontalMovement;
+    public bool vertEnemy;
+    
     public float movingSpeed = 0.2f;
 
+    //public float horizontalMovement;
     public float edgeRight = 10.83f;
     public float edgeLeft = -10.83f;
+
+    //public float verticalMovement;
+    public float edgeUp = 5.9f;
+    public float edgeDown = -5.9f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +25,23 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(movingSpeed, 0f, 0f);
-
-        if (transform.position.x >= edgeRight || transform.position.x <= edgeLeft)
+        if (vertEnemy)
         {
-            movingSpeed *= -1;
+            transform.position += new Vector3(0f, movingSpeed, 0f);
+
+            if (transform.position.y >= edgeUp || transform.position.y <= edgeDown)
+            {
+                movingSpeed *= -1;
+            }
+        }
+        else
+        {
+            transform.position += new Vector3(movingSpeed, 0f, 0f);
+
+            if (transform.position.x >= edgeRight || transform.position.x <= edgeLeft)
+            {
+                movingSpeed *= -1;
+            }
         }
     }
 }
