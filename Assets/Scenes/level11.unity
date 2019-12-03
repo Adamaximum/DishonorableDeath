@@ -3628,7 +3628,7 @@ MonoBehaviour:
   vertEnemy: 0
   movingSpeed: 0.15
   edgeRight: 9.2
-  edgeLeft: -0.6
+  edgeLeft: 1.6
   edgeUp: 5.9
   edgeDown: -5.9
 --- !u!212 &652175169
@@ -4631,7 +4631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794060758}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -3.93, y: -0.82, z: -2.3334005}
+  m_LocalPosition: {x: -4.02, y: -0.28, z: -2.3334005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 403702035}

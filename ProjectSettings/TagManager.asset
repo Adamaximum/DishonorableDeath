@@ -11,6 +11,7 @@ TagManager:
   - Demon
   - Bullet
   - Hazard
+  - AllEnemy
   layers:
   - Default
   - TransparentFX

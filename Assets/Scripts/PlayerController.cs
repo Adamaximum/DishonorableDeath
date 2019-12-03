@@ -224,6 +224,10 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        else if (collision.gameObject.tag == "AllEnemy")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision) // Trigger Stay
