@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public bool jumpCheck;
     public float fallMultiplier = 2.5f;
 
+    public LayerMask groundMask;
+
     Rigidbody2D playerRB;
 
     SpriteRenderer playerSR;
@@ -54,6 +56,7 @@ public class PlayerController : MonoBehaviour
         }
         
         MovementInput();
+        GroundCheck();
 
         if(playerState == 0)
         {
@@ -147,9 +150,7 @@ public class PlayerController : MonoBehaviour
         {
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCheck == true)
             {
-                playerRB.velocity = Vector2.up * jumpVelocity;
-                //playerRB.velocity = Vector2.up * jumpVelocity *Time.deltaTime;
-                //playerRB.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+                playerRB.velocity += Vector2.up * jumpVelocity;
             }
         }
         else if (playerState == 1) // Jumping is Infinite
@@ -161,38 +162,26 @@ public class PlayerController : MonoBehaviour
         }
         if (playerState < 2) // Fall Multiplier is not active when Hell is active
         {
-            if (playerRB.velocity.y < 0)
-            {
-                playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            }
+            playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
     }
 
-    private void FixedUpdate()
+    void GroundCheck()
     {
- 
-        //playerRB.MovePosition(transform.position + velo);
+        float rayCastDist = 1;
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(transform.position, Vector2.down, rayCastDist, groundMask);
 
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision) // Collision Enter
-    {
-        if (collision.gameObject.tag == "Ground")
+        if (hit.collider != null)
         {
             jumpCheck = true;
         }
-        if (collision.gameObject.tag == "HeavenDeath" && playerState == 0)
-        {
-            playerState = 1;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision) // Collision Exit
-    {
-        if (collision.gameObject.tag == "Ground")
+        else
         {
             jumpCheck = false;
         }
+
+        Debug.DrawRay(transform.position, rayCastDist * Vector2.down, Color.red);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // Trigger Enter
