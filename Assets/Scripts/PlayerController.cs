@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
     public bool hellContact;
 
+    public Color[] transparentLevel; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,25 +62,22 @@ public class PlayerController : MonoBehaviour
         if(playerState == 0)
         {
             playerSR.sprite = alive;
-            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 255);
             GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else if (playerState == 1)
         {
             playerSR.sprite = heaven;
-            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 127);
             GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else if (playerState == 2)
         {
             playerSR.sprite = hell;
-            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 127);
             GetComponent<BoxCollider2D>().isTrigger = true;
-        }
 
-        if (hellContact)
-        {
-            playerRB.velocity = new Vector2(0f, 0f);
+            if (hellContact)
+            {
+                playerRB.velocity = new Vector2(0f, 0f);
+            }
         }
     }
 
@@ -191,19 +190,18 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "HeavenDeath" && playerState == 0)
         {
             playerState = 1;
-            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 127);
+            playerSR.color = transparentLevel[1];
         }
         if (collision.gameObject.tag == "HellDeath" && playerState == 0)
         {
             playerState = 2;
-            playerRB.velocity = new Vector2(0f, 0f);
-            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 127);
+            playerSR.color = transparentLevel[1];
         }
 
         if (collision.gameObject.name == "Resurrector")
         {
             playerState = 0;
-            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 255);
+            playerSR.color = transparentLevel[0];
         }
 
         if (collision.gameObject.tag == "Hazard" && playerState == 0)
