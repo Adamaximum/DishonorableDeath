@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4202762130949053707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.38, y: -5.93, z: 0}
-  m_LocalScale: {x: 0.90234375, y: 1.3025742, z: 1}
+  m_LocalPosition: {x: -10.3485, y: -5.93, z: 0}
+  m_LocalScale: {x: 0.11440037, y: 0.1151934, z: 0.1500147}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 71b56399caed8d5488d8d697265d9ebd, type: 3}
-  m_Color: {r: 0, g: 0.17554712, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: bf58ae3b9325ea44e81ade0df91743b0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,15 +97,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerState: 0
   playerSpeed: 0.2
-  jumpVelocity: 25
+  jumpVelocity: 24
   jumpCheck: 0
   fallMultiplier: 10
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  alive: {r: 0, g: 0.1764706, b: 1, a: 1}
-  heaven: {r: 1, g: 1, b: 1, a: 0.49803922}
-  hell: {r: 1, g: 0, b: 0, a: 0.49803922}
+  alive: {fileID: 21300000, guid: bf58ae3b9325ea44e81ade0df91743b0, type: 3}
+  heaven: {fileID: 21300000, guid: 1ed3077f9b87bfe4b872e6fbae972b2a, type: 3}
+  hell: {fileID: 21300000, guid: 22dc48f15ea2abe43b39b7b965d069e3, type: 3}
   hellContact: 0
 --- !u!61 &4202762130949053708
 BoxCollider2D:
@@ -120,18 +120,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.021038055, y: 0.00000166893}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.68, y: 11.47}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.6739264, y: 11.287109}
   m_EdgeRadius: 0
 --- !u!50 &4202762130949053711
 Rigidbody2D:

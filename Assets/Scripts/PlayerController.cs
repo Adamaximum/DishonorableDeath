@@ -14,8 +14,7 @@ public class PlayerController : MonoBehaviour
 
     float horizontalInput;
     float verticalInput;
-
-    Vector3 velo;
+    
     float edgeLeft = -11.63f;
     float edgeRight = 11.63f;
     float edgeUp = 6.13f;
@@ -32,10 +31,10 @@ public class PlayerController : MonoBehaviour
 
     SpriteRenderer playerSR;
 
-    [Header ("State Colors")]
-    public Color alive;
-    public Color heaven;
-    public Color hell;
+    [Header("State Sprites")]
+    public Sprite alive;
+    public Sprite heaven;
+    public Sprite hell;
 
     public bool hellContact;
 
@@ -60,17 +59,20 @@ public class PlayerController : MonoBehaviour
 
         if(playerState == 0)
         {
-            playerSR.color = alive;
+            playerSR.sprite = alive;
+            playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 255);
             GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else if (playerState == 1)
         {
-            playerSR.color = heaven;
+            playerSR.sprite = heaven;
+            playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 127);
             GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else if (playerState == 2)
         {
-            playerSR.color = hell;
+            playerSR.sprite = hell;
+            playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 127);
             GetComponent<BoxCollider2D>().isTrigger = true;
         }
 
