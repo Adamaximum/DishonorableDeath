@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     float horizontalInput;
     float verticalInput;
-
+    
     float edgeLeft = -11.63f;
     float edgeRight = 11.63f;
     float edgeUp = 6.13f;
@@ -25,14 +25,16 @@ public class PlayerController : MonoBehaviour
     public bool jumpCheck;
     public float fallMultiplier = 2.5f;
 
+    public LayerMask groundMask;
+
     Rigidbody2D playerRB;
 
     SpriteRenderer playerSR;
 
-    [Header ("State Colors")]
-    public Color alive;
-    public Color heaven;
-    public Color hell;
+    [Header("State Sprites")]
+    public Sprite alive;
+    public Sprite heaven;
+    public Sprite hell;
 
     public bool hellContact;
 
@@ -51,22 +53,26 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-
+        
         MovementInput();
+        GroundCheck();
 
         if(playerState == 0)
         {
-            playerSR.color = alive;
+            playerSR.sprite = alive;
+            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 255);
             GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else if (playerState == 1)
         {
-            playerSR.color = heaven;
+            playerSR.sprite = heaven;
+            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 127);
             GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else if (playerState == 2)
         {
-            playerSR.color = hell;
+            playerSR.sprite = hell;
+            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 127);
             GetComponent<BoxCollider2D>().isTrigger = true;
         }
 
@@ -78,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
     void MovementInput()
     {
+
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             if (transform.position.x > edgeLeft)
@@ -145,7 +152,7 @@ public class PlayerController : MonoBehaviour
         {
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCheck == true)
             {
-                playerRB.velocity = Vector2.up * jumpVelocity;
+                playerRB.velocity += Vector2.up * jumpVelocity;
             }
         }
         else if (playerState == 1) // Jumping is Infinite
@@ -157,31 +164,26 @@ public class PlayerController : MonoBehaviour
         }
         if (playerState < 2) // Fall Multiplier is not active when Hell is active
         {
-            if (playerRB.velocity.y < 0)
-            {
-                playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            }
+            playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) // Collision Enter
+    void GroundCheck()
     {
-        if (collision.gameObject.tag == "Ground")
+        float rayCastDist = 1;
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(transform.position, Vector2.down, rayCastDist, groundMask);
+
+        if (hit.collider != null)
         {
             jumpCheck = true;
         }
-        if (collision.gameObject.tag == "HeavenDeath" && playerState == 0)
-        {
-            playerState = 1;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision) // Collision Exit
-    {
-        if (collision.gameObject.tag == "Ground")
+        else
         {
             jumpCheck = false;
         }
+
+        Debug.DrawRay(transform.position, rayCastDist * Vector2.down, Color.red);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // Trigger Enter
@@ -189,16 +191,19 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "HeavenDeath" && playerState == 0)
         {
             playerState = 1;
+            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 127);
         }
         if (collision.gameObject.tag == "HellDeath" && playerState == 0)
         {
             playerState = 2;
             playerRB.velocity = new Vector2(0f, 0f);
+            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 127);
         }
 
-        if(collision.gameObject.name == "Resurrector")
+        if (collision.gameObject.name == "Resurrector")
         {
             playerState = 0;
+            //playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 255);
         }
 
         if (collision.gameObject.tag == "Hazard" && playerState == 0)
@@ -210,6 +215,10 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else if (collision.gameObject.tag == "Demon" && playerState == 2)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else if (collision.gameObject.tag == "AllEnemy")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
