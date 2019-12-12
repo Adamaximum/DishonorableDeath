@@ -41,6 +41,7 @@ public class EnemyMovement : MonoBehaviour
             if (transform.position.x >= edgeRight || transform.position.x <= edgeLeft)
             {
                 movingSpeed *= -1;
+                gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
             }
         }
     }
