@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask groundMask;
 
-    Rigidbody2D playerRB;
+    [HideInInspector]
+    public Rigidbody2D playerRB;
 
     SpriteRenderer playerSR;
 
@@ -178,9 +179,9 @@ public class PlayerController : MonoBehaviour
     {
         float rayCastDist = 1;
         RaycastHit2D hitLeft;
-        Vector2 rayPositionLeft = new Vector2(transform.position.x - 0.3f, transform.position.y);
         RaycastHit2D hitRight;
         Vector2 rayPositionRight = new Vector2(transform.position.x + 0.3f, transform.position.y);
+        Vector2 rayPositionLeft = new Vector2(transform.position.x - 0.3f, transform.position.y);
         hitLeft = Physics2D.Raycast(rayPositionLeft, Vector2.down, rayCastDist, groundMask);
         hitRight = Physics2D.Raycast(rayPositionRight, Vector2.down, rayCastDist, groundMask);
 
@@ -216,7 +217,7 @@ public class PlayerController : MonoBehaviour
             source.Play();
         }
 
-        if (collision.gameObject.name == "Resurrector")
+        if (collision.gameObject.name == "Resurrector" && playerState > 0)
         {
             playerState = 0;
             playerSR.color = transparentLevel[0];
