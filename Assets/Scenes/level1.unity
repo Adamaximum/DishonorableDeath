@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 128328087}
   - component: {fileID: 128328089}
   - component: {fileID: 128328088}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BorderLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 1397846947}
   - component: {fileID: 1397846949}
   - component: {fileID: 1397846948}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BorderRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1220,7 +1220,7 @@ GameObject:
   - component: {fileID: 1504591345}
   - component: {fileID: 1504591347}
   - component: {fileID: 1504591346}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BorderUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1804,8 +1804,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -307.4, y: -96.78}
-  m_SizeDelta: {x: 93.73, y: 90.77}
+  m_AnchoredPosition: {x: -232.8, y: -126.5}
+  m_SizeDelta: {x: 300.27, y: 57.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1993904372
 MonoBehaviour:
@@ -1825,10 +1825,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Reach the door up top!
+  m_text: Use the arrow keys or WASD to move. Press Up or W to jump!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e7f7fe7e718d4f41bcec5b888b1fab7, type: 2}
+  m_sharedMaterial: {fileID: 4598980479814659444, guid: 2e7f7fe7e718d4f41bcec5b888b1fab7,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1859,7 +1860,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1894,12 +1895,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1993904372}
-    characterCount: 22
+    characterCount: 58
     spriteCount: 0
-    spaceCount: 4
-    wordCount: 5
+    spaceCount: 13
+    wordCount: 14
     linkCount: 0
-    lineCount: 3
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

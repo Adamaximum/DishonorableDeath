@@ -711,7 +711,7 @@ GameObject:
   - component: {fileID: 618150530}
   - component: {fileID: 618150532}
   - component: {fileID: 618150531}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BorderRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 772253908}
   - component: {fileID: 772253910}
   - component: {fileID: 772253909}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BorderLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2735,7 +2735,7 @@ GameObject:
   - component: {fileID: 2040334880}
   - component: {fileID: 2040334882}
   - component: {fileID: 2040334881}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BorderUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

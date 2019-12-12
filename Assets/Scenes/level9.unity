@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 128328087}
   - component: {fileID: 128328089}
   - component: {fileID: 128328088}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BorderLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3621,7 +3621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &962361946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5676,7 +5676,7 @@ GameObject:
   - component: {fileID: 1397846947}
   - component: {fileID: 1397846949}
   - component: {fileID: 1397846948}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BorderRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6189,7 +6189,7 @@ GameObject:
   - component: {fileID: 1504591345}
   - component: {fileID: 1504591347}
   - component: {fileID: 1504591346}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BorderUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
