@@ -170,10 +170,14 @@ public class PlayerController : MonoBehaviour
     void GroundCheck()
     {
         float rayCastDist = 1;
-        RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position, Vector2.down, rayCastDist, groundMask);
+        RaycastHit2D hitLeft;
+        Vector2 rayPositionLeft = new Vector2(transform.position.x - 0.4f, transform.position.y);
+        RaycastHit2D hitRight;
+        Vector2 rayPositionRight = new Vector2(transform.position.x + 0.4f, transform.position.y);
+        hitLeft = Physics2D.Raycast(rayPositionLeft, Vector2.down, rayCastDist, groundMask);
+        hitRight = Physics2D.Raycast(rayPositionRight, Vector2.down, rayCastDist, groundMask);
 
-        if (hit.collider != null)
+        if (hitLeft.collider != null || hitRight.collider != null)
         {
             jumpCheck = true;
         }
@@ -182,7 +186,8 @@ public class PlayerController : MonoBehaviour
             jumpCheck = false;
         }
 
-        Debug.DrawRay(transform.position, rayCastDist * Vector2.down, Color.red);
+        Debug.DrawRay(rayPositionLeft, rayCastDist * Vector2.down, Color.red);
+        Debug.DrawRay(rayPositionRight, rayCastDist * Vector2.down, Color.red);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // Trigger Enter
